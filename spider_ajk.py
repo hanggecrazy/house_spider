@@ -3,19 +3,33 @@
 import os
 import re
 import common
+
 class spider_ajk:
+    
+    '''
+    获取楼盘标题
+    '''
     def getTitle(self, row):
         """获取节点下html标签中div属性class=nlcd_name的元素html内容"""
         return row.find('div', class_ = 'lp-name').find('h3').find('a').get_text()
     
+    '''
+    获取楼盘地理位置
+    '''
     def getAddr(self, row):
         """获取节点下html标签中div属性class=address的元素html内容"""
         return row.find('p', class_ = 'address').find('a').get_text()
     
+    '''
+    获取楼盘价格
+    '''
     def getPrice(self, row):
         """获取节点下html标签中div属性class=nhouse_price的元素html内容"""
         return row.findNext('div', class_ = 'favor-pos').find('p').get_text()
     
+    '''
+    获取房屋类型
+    '''
     def getType(self, row):
         """获取房屋类型（1居／2居／3居....大小xxx-xx）"""
         types = ''
@@ -25,10 +39,16 @@ class spider_ajk:
                 types += tmp.get_text() + '/'
         return types
     
+    '''
+    获取房源状态
+    '''
     def getStatus(self, row):
         """获取房屋状态，待售、售罄、开盘"""
         return row.find('div', class_ = 'lp-name').find('i').get_text()
     
+    '''
+    获取楼盘链接
+    '''
     def getUrl(self, row):
         """获取节点下html标签中div属性class=nlcd_name的元素html内容"""
         return row.find('div', class_ = 'lp-name').find('h3').find('a').get('href')
