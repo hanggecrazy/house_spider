@@ -2,15 +2,26 @@
 # -*- coding: utf-8 -*-
 import os
 import common
+
 class spider_lj:
+
+    '''
+    获取楼盘标题
+    '''
     def getTitle(self, row):
         """获取节点下html标签中div属性class=nlcd_name的元素html内容"""
         return row.find('h2').find('a').get_text()
     
+    '''
+    获取楼盘地理位置信息
+    '''
     def getAddr(self, row):
         """获取节点下html标签中div属性class=address的元素html内容"""
         return row.find('div', class_ = 'where').find('span').get_text()
     
+    '''
+    获取楼盘价格
+    '''
     def getPrice(self, row):
         price = ""
         """获取节点下html标签中div属性class=nhouse_price的元素html内容"""
@@ -23,6 +34,9 @@ class spider_lj:
                 price = tmp 
         return price
     
+    '''
+    获取房源状态
+    '''
     def getType(self, row):
         """获取房屋类型（1居／2居／3居....大小xxx-xx）"""
         types = ''
@@ -33,9 +47,12 @@ class spider_lj:
     
         return types
     
+    '''
+    获取房源面积大小
+    '''
     def getArea(self, row):
         area = ''
-        """获取房屋状态，待售、售罄、开盘"""
+        """获取房屋大小"""
         area_div = row.find('div', class_ = 'area')
         if area_div is not None :
             area = area_div.get_text().replace(' ', '')
@@ -46,6 +63,9 @@ class spider_lj:
                 
         return area
     
+    '''
+    获取楼盘链接地址
+    '''
     def getUrl(self, row):
         """获取节点下html标签中div属性class=nlcd_name的元素html内容"""
         return row.find('h2').find('a').get('href')
@@ -62,6 +82,7 @@ class spider_lj:
 if __name__ == '__main__': 
     city = 'bj'
     max_pg = 18
+    
     field = [
         ["title", u"标题"], 
         ["price", u"价格"], 
