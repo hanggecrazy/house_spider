@@ -9,7 +9,6 @@ class spider_lj:
     def getTitle(self, row):
         #获取节点下html标签中div属性class=nlcd_name的元素html内容
         return row.find('h2').find('a').get_text()
-    
 
     #获取楼盘地理位置信息
     def getAddr(self, row):
