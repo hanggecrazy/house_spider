@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import common
+
 class spider_sf:
     
     '''
@@ -12,7 +13,7 @@ class spider_sf:
         return row.find('div', class_ = "nlcd_name").find('a').get_text()
     
     '''
-    获取地址位置信息
+    获取楼盘地址位置信息
     '''
     def getAddr(self, row):
         """获取节点下html标签中div属性class=address的元素下的a标签下的span标签下的html内容"""
@@ -84,6 +85,7 @@ if __name__ == "__main__":
 
     city = 'cd'
     max_pg = 101
+    
     field = [
         ["title", u"标题"], 
         ["price", u"价格"], 
